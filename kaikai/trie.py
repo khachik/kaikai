@@ -29,11 +29,11 @@ class Trie(object):
                 res.append(l + w)
         return res
 
-    def getSuffixes(self, item, index=0):
+    def suffixes(self, item, index=0):
         if index == len(item) or item[index] not in self.children:
             return index, self.words()
         else:
-            return self.children[item[index]].getSuffixes(item, index+1)
+            return self.children[item[index]].suffixes(item, index+1)
 
     def __repr__(self):
         res = ""
@@ -41,7 +41,7 @@ class Trie(object):
         for w in words:
             res += w + "\n"
             indent = " " * len(w)
-            index, suffixes = self.getSuffixes(w)
+            index, suffixes = self.suffixes(w)
             for s in suffixes:
                 if s:
                     res += indent + s + "\n"

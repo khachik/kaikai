@@ -15,7 +15,7 @@ class Vocab(object):
             self.words.add(w)
         
         for w in self.words.words():
-            index,suffixes = self.words.getSuffixes(w)
+            index,suffixes = self.words.suffixes(w)
             for s in suffixes:
                 if s:
                     self.suffixes[s].add(w)
@@ -26,7 +26,7 @@ class Vocab(object):
         ignore = set()
         for w in self.words.words():
             if w in ignore: continue
-            index, suffixes = self.words.getSuffixes(w)
+            index, suffixes = self.words.suffixes(w)
             if w.isupper(): # ABC, ABCs, ABCi -> ABC
                 if all(s.islower() for s in suffixes):
                     for s in suffixes:

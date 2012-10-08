@@ -1,4 +1,4 @@
-from trie import *
+from kaikai.trie import *
 import unittest
 
 
@@ -38,22 +38,22 @@ class Test(unittest.TestCase):
         self.trie.add("abde")
         self.trie.add("abdefg")
         self.trie.add("abdefh")
-        s = self.trie.getSuffixes("ab")
+        s = self.trie.suffixes("ab")
         expected = (2, set(("c", "d", "de", "defg", "defh")))
         self.assertEqual(expected, (s[0], set(s[1])))
 
-        s = self.trie.getSuffixes("abd")
+        s = self.trie.suffixes("abd")
         expected = (3, set(("", "e", "efg", "efh")))
         self.assertEqual(expected, (s[0], set(s[1])))
 
-        s = self.trie.getSuffixes("abdef")
+        s = self.trie.suffixes("abdef")
         expected = (5, set(("g", "h")))
         self.assertEqual(expected, (s[0], set(s[1])))
 
-        s = self.trie.getSuffixes("abc")
+        s = self.trie.suffixes("abc")
         self.assertEqual((3, [""]), s)
 
-        s = self.trie.getSuffixes("bc")
+        s = self.trie.suffixes("bc")
         expected = (0, set(("abc", "abd", "abde", "abdefg", "abdefh")))
         self.assertEqual(expected, (s[0], set(s[1])))
 
